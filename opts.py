@@ -58,7 +58,7 @@ def model_opts(parser):
     parser.add_argument('-input_feed', type=int, default=1,
                         help="""Feed the context vector at each time step as
                         additional input (via concatenation with the word
-                        embeddings) to the decoder.""")
+                        embeddings) to the decoder (Luong et al.2015).""")
 
     parser.add_argument('-rnn_type', type=str, default='LSTM',
                         choices=['LSTM', 'GRU', 'SRU'],
@@ -82,7 +82,8 @@ def model_opts(parser):
     parser.add_argument('-global_attention', type=str, default='general',
                         choices=['dot', 'general', 'mlp'],
                         help="""The attention type to use:
-                        dotprot or general (Luong) or MLP (Bahdanau)""")
+                        dotprot or general (Luong et al.2015) 
+                        or MLP (Bahdanau et al.2015)""")
 
     # Genenerator and loss options.
     parser.add_argument('-copy_attn', action="store_true",
@@ -152,7 +153,8 @@ def train_opts(parser):
                         renormalize it to have the norm equal to
                         max_grad_norm""")
     parser.add_argument('-dropout', type=float, default=0.3,
-                        help="Dropout probability; applied in LSTM stacks.")
+                        help="""Dropout probability; applied in LSTM stacks 
+                        (Zaremba et al., 2015).""")
     parser.add_argument('-truncated_decoder', type=int, default=0,
                         help="""Truncated bptt.""")
     # learning rate
